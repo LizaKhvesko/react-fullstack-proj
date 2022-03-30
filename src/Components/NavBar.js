@@ -42,7 +42,6 @@ const ImgUser = styled.img`
     width: 32px;
 `;
 const LoginBtn = styled.button`
-    cursor: pointer;
     width: 60px;
     height: 19px;
     font-size: 16px;
