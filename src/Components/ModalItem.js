@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AddProduct } from './AddProduct';
+import { AddBtn } from './AddProduct';
 
 const Overlay = styled.div`
     position: fixed;
@@ -27,15 +27,19 @@ const Banner = styled.div`
     background-image: url(${({img}) => img});
     background-size: cover;
     background-position: center;
-    margin-bottom: 20px;
+`
+const Content = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 200px);
+    padding: 30px;
 `
 
 const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 37px;
-    padding-right: 53PX;
 `
 
 export const ModalItem = ({ openItem, setOpenItem }) => {
@@ -50,12 +54,14 @@ export const ModalItem = ({ openItem, setOpenItem }) => {
         <Overlay id="overlay" onClick={closeModal}>
             <Modal>
                 <Banner img={openItem.img}/>
+                <Content>
                 <Header>
                 <h2>{openItem.name}</h2>
                 <h2>{openItem.price.toLocaleString('ru-RU',
                 {style: 'currency', currency: 'RUB'})}</h2>
                 </Header>
-                <AddProduct />
+                <AddBtn>Добавить</AddBtn>
+                </Content>
             </Modal>
         </Overlay>
 )

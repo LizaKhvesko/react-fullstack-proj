@@ -1,18 +1,21 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const AddBtn = styled.button`
+export const AddBtn = styled.button`
+    display: block;
+    margin: 0 auto;
     width: 200px;
     height: 45px;
+    font-size: inherit;
+    font-family: inherit;
     background-color: #299B01;
-    border: transparent;
+    border-color: transparent;
     color: white;
-    margin-left: 150px;
-    margin-top: 150px;
+    cursor: pointer;
+    transition-property: color, background-color, border-color;
+    transition-duration: .3s;
+    &:hover {
+       background-color: #fff;
+       color: #299B01;
+       border-color: #299B01; 
+    }
 `;
-
-export const AddProduct = () => (
-    <AddBtn>
-        Добавить
-    </AddBtn>
-)
