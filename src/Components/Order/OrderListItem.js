@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import rubbish from '../image/rubbish.svg';
+import rubbish from '../../image/rubbish.svg';
 
 const RubbishBtn = styled.button`
     width: 24px;
@@ -30,11 +30,12 @@ const OrderItemStyled = styled.li`
     margin: 15px 0;
 `
 
-export const OrderListItem = () => (
+export const OrderListItem = ({ order }) => (
     <OrderItemStyled>
-        <ItemName>JS Burger</ItemName>
+        <ItemName>{order.name}</ItemName>
         <span>2</span>
-        <ItemPrice>750 p</ItemPrice>
+        <ItemPrice>{order.price.toLocaleString('ru-RU',
+                {style: 'currency', currency: 'RUB'})}</ItemPrice>
         <RubbishBtn />
     </OrderItemStyled>
 )
