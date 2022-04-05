@@ -31,12 +31,28 @@ const OrderItemStyled = styled.li`
     display: flex;
     margin: 15px 0;
 `
+const AddText = styled.div`
+    font-size: 10px;  
+`
 
-export const OrderListItem = ({ order }) => (
+export const OrderListItem = ({ order }) => {
+
+function addText(order) {
+    const add = order.topping.filter(item => item.checked);
+    const nameTopping = add.map(item => item.name);
+    if (nameTopping.length > 0) {
+        return `(${nameTopping.join(', ')})`
+    } else {
+        return '(без добавок)'
+    }
+}
+
+return (
     <OrderItemStyled>
         <ItemName>{order.name}</ItemName>
+        <AddText>{addText(order)}</AddText>
         <span>{order.count}</span>
         <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
         <RubbishBtn />
     </OrderItemStyled>
-)
+)}
