@@ -30,29 +30,26 @@ const ItemPrice = styled.span`
 const OrderItemStyled = styled.li`
     display: flex;
     margin: 15px 0;
+    flex-wrap: wrap;
 `
 const AddText = styled.div`
-    font-size: 10px;  
+    color: #9a9a9a;
+    font-size: 14px;
+    width: 100%;
 `
 
 export const OrderListItem = ({ order }) => {
 
-function addText(order) {
-    const add = order.topping.filter(item => item.checked);
-    const nameTopping = add.map(item => item.name);
-    if (nameTopping.length > 0) {
-        return `(${nameTopping.join(', ')})`
-    } else {
-        return '(без добавок)'
-    }
-}
+const topping = order.topping.filter(item => item.checked)
+    .map(item => item.name)
+    .join(', ');
 
 return (
     <OrderItemStyled>
-        <ItemName>{order.name}</ItemName>
-        <AddText>{addText(order)}</AddText>
+        <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>
         <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
         <RubbishBtn />
+        {topping && <AddText>Допы: {topping}</AddText>}
     </OrderItemStyled>
 )}
