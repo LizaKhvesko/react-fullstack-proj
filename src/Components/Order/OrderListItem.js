@@ -38,18 +38,22 @@ const AddText = styled.div`
     width: 100%;
 `
 
-export const OrderListItem = ({ order }) => {
+export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
 
 const topping = order.topping.filter(item => item.checked)
     .map(item => item.name)
     .join(', ');
 
 return (
-    <OrderItemStyled>
+    <OrderItemStyled onClick={(e) => {
+       if(!e.target.closest('button')) {
+           setOpenItem({...order, index})
+       }
+    }}>
         <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>
         <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-        <RubbishBtn />
+        <RubbishBtn onClick={() => deleteItem(index)}/>
         {topping && <AddText>Допы: {topping}</AddText>}
     </OrderItemStyled>
 )}
